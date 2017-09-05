@@ -1,21 +1,30 @@
 
 function startGame(){
+  for(var i = 1; i <= 9; i++){
+    document.getElementById('square' + i).innerText = '';
+  }
   document.player = 'X';
   updateMessage(000);
+  document.TerminateApp = false;
 }
 
 function fillSquare(square){
-
-  if(calculateWinner()){
-    console.log('you won');
-  } else if(!checkIfSquareIsFilled(square)){
-      square.innerText = document.player;
-      switchPlayer();
+  checkIfAllSquaresAreFilled();
+  if(!document.TerminateApp){
+    if(checkIfSquareIsFilled(square)){
+      updateMessage(002);
     } else {
-      updateMessage(002)
+      square.innerText = document.player;
+
     }
-
-
+  }
+     if (calculateWinner()){
+      updateMessage(003);
+      document.TerminateApp = true;
+    } else{
+      switchPlayer();
+      updateMessage(001);
+    }
 }
 
 function switchPlayer(){
@@ -24,7 +33,6 @@ function switchPlayer(){
   } else {
     document.player = 'X';
   }
-  updateMessage(001);
 }
 
 function checkIfSquareIsFilled(square){
@@ -48,36 +56,70 @@ function updateMessage(statusCode){
   } else if (statusCode == 002){
     document.getElementById('message').innerText = 'You cant go there, try again.'
   }
-  else if (statuscode == 003) {
-    document.getElementById('message').innerText = 'we have a winner, handle it';
+  else if (statusCode == 003) {
+    document.getElementById('message').innerText = 'Congrats ' + document.player + ' you won!';
+  }
+  else if (statusCode == 004) {
+    document.getElementById('message').innerText = 'Looks like all squares are filled, Why dont you play again?';
   }
 }
 
 function calculateWinner(){
-
   var winnerExists = false;
 
   if(checkSquares()){
     winnerExists = true;
   }
-
-
-
   return winnerExists;
 }
 
 function checkSquares(){
-
   if(document.getElementById('square1').innerText == document.player &&
      document.getElementById('square2').innerText == document.player &&
      document.getElementById('square3').innerText == document.player){
        return true;
-     }
+     } else if(document.getElementById('square4').innerText == document.player &&
+               document.getElementById('square5').innerText == document.player &&
+               document.getElementById('square6').innerText == document.player){
+                 return true;
+               } else if (document.getElementById('square7').innerText == document.player &&
+                         document.getElementById('square8').innerText == document.player &&
+                         document.getElementById('square9').innerText == document.player){
+                           return true;
+                         } else if (document.getElementById('square1').innerText == document.player &&
+                                   document.getElementById('square4').innerText == document.player &&
+                                   document.getElementById('square7').innerText == document.player){
+                                     return true;
+                                   } else if (document.getElementById('square2').innerText == document.player &&
+                                             document.getElementById('square5').innerText == document.player &&
+                                             document.getElementById('square8').innerText == document.player){
+                                               return true;
+                                             } else if(document.getElementById('square3').innerText == document.player &&
+                                                       document.getElementById('square6').innerText == document.player &&
+                                                       document.getElementById('square9').innerText == document.player){
+                                                         return true;
+                                                       } else if(document.getElementById('square1').innerText == document.player &&
+                                                                 document.getElementById('square5').innerText == document.player &&
+                                                                 document.getElementById('square9').innerText == document.player){
+                                                                   return true;
+                                                       } else if(document.getElementById('square3').innerText == document.player &&
+                                                                 document.getElementById('square5').innerText == document.player &&
+                                                                 document.getElementById('square7').innerText == document.player){
+                                                                   return true;
+                                                                 }
+}
 
-
-
-
-
-
+function checkIfAllSquaresAreFilled(){
+  var numberOfSquaresFilled = 0;
+  for(var i = 1; i <= 9; i++){
+    if(document.getElementById('square' + i) == 'X' ||
+       document.getElementById('square' + i) == 'O'){
+      numberOfSquaresFilled++;
+    }
+  }
+  if(numberOfSquaresFilled == 8){
+    updateMessage(004);
+    document.terminateApp = true;
+  }
 
 }
