@@ -1,1 +1,1 @@
-body{width:500px;margin:auto}#game_board tr td{text-align:center;border:.01em solid black;font-size:100px;width:150px;height:150px}
+@import url("https://fonts.googleapis.com/css?family=Architects+Daughter|Permanent+Marker");body{width:500px;margin:auto;font-family:"Architects Daughghter",cursive}#game_board tr td{text-align:center;font-family:"Permanent Marker",cursive;font-size:100px;border:.01em solid black;width:150px;height:150px}a{text-decoration:none;color:black}

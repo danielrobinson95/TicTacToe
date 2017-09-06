@@ -9,22 +9,25 @@ function startGame(){
 }
 
 function fillSquare(square){
-  checkIfAllSquaresAreFilled();
-  if(!document.TerminateApp){
-    if(checkIfSquareIsFilled(square)){
-      updateMessage(002);
-    } else {
-      square.innerText = document.player;
 
-    }
-  }
-     if (calculateWinner()){
+if(!document.TerminateApp){
+  if(!checkIfSquareIsFilled(square)){
+    square.innerText = document.player;
+    if(calculateWinner()){
       updateMessage(003);
-      document.TerminateApp = true;
     } else{
       switchPlayer();
-      updateMessage(001);
+      checkIfAllSquaresAreFilled();
     }
+  }
+}
+
+
+
+
+
+
+
 }
 
 function switchPlayer(){
@@ -33,6 +36,7 @@ function switchPlayer(){
   } else {
     document.player = 'X';
   }
+  updateMessage(001);
 }
 
 function checkIfSquareIsFilled(square){
@@ -69,6 +73,7 @@ function calculateWinner(){
 
   if(checkSquares()){
     winnerExists = true;
+    document.TerminateApp = true;
   }
   return winnerExists;
 }
@@ -112,12 +117,12 @@ function checkSquares(){
 function checkIfAllSquaresAreFilled(){
   var numberOfSquaresFilled = 0;
   for(var i = 1; i <= 9; i++){
-    if(document.getElementById('square' + i) == 'X' ||
-       document.getElementById('square' + i) == 'O'){
-      numberOfSquaresFilled++;
+    if(document.getElementById('square' + i).innerText == 'X' ||
+       document.getElementById('square' + i).innerText == 'O'){
+      numberOfSquaresFilled++;    
     }
   }
-  if(numberOfSquaresFilled == 8){
+  if(numberOfSquaresFilled == 9){
     updateMessage(004);
     document.terminateApp = true;
   }
