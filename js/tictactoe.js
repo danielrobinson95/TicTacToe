@@ -71,11 +71,33 @@ function updateMessage(statusCode){
 function calculateWinner(){
   var winnerExists = false;
 
+
   if(checkSquares()){
     winnerExists = true;
     document.TerminateApp = true;
+    document.num = 1;
+    callFireWorks();
+
+
+
   }
   return winnerExists;
+}
+
+function callFireWorks () {
+
+  var a = Math.floor((Math.random() * 100) + 1);
+  var b = Math.floor((Math.random() * 200) + 1);
+  var c = Math.floor((Math.random() * 8) + 1);
+  var d = Math.floor((Math.random() * 7) + 1);
+
+   setTimeout(function () {
+      createFirework(a,b,c,d,null,null,null,null,false,true);
+      document.num++;
+      if (document.num < 10) {
+         callFireWorks();
+      }
+   }, 500)
 }
 
 function checkSquares(){
@@ -119,7 +141,7 @@ function checkIfAllSquaresAreFilled(){
   for(var i = 1; i <= 9; i++){
     if(document.getElementById('square' + i).innerText == 'X' ||
        document.getElementById('square' + i).innerText == 'O'){
-      numberOfSquaresFilled++;    
+      numberOfSquaresFilled++;
     }
   }
   if(numberOfSquaresFilled == 9){

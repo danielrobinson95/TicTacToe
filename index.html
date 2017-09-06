@@ -5,10 +5,22 @@
     <title>Tic-Tac-Toe Game</title>
     <script src="js/tictactoe.js"></script>
     <link rel="stylesheet" href="css/site.min.css">
+    <link rel="stylesheet" href="css/fireworks.css">
+
+    <script src="js/soundmanager2-nodebug-jsmin.js"></script>
+    <script src="js/fireworks.js"></script>
+
+
   </head>
   <body onload="startGame();">
     <h3>Tic-Tac-Toe Game</h3>
     <h4 id="message"></h4>
+    <div id="fireworks-template">
+      <div id="fw" class="firework"></div>
+      <div id="fp" class="fireworkParticle"><img src="images/particles.gif" alt="" /></div>
+    </div>
+
+    <div id="fireContainer"></div>
   </body>
 
     <table id="game_board">

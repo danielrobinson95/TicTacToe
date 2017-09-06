@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Architects+Daughter|Permanent+Marker");
 body {
   width: 500px;
-  margin: auto;
+  margin: auto !important;
   font-family: "Architects Daughghter", cursive;
 }
 

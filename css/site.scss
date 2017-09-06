@@ -5,7 +5,7 @@ $text_font: 'Architects Daughghter', cursive;
 
 body {
   width: 500px;
-  margin: auto;
+  margin: auto !important;
   font:{
     family: $text_font;
   }
